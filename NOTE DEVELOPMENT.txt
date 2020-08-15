@@ -1,0 +1,66 @@
+1. buat surat undangan ke prodi admin dengan dear admin <prodi>
+- kp = sudah
+- skripsi = sudah
+- tesis = sudah
+2. pastikan setiap template email dengan Dear <nama>
+- accepted.blade.php = sudah
+- cancel_undangan_sidang.blade.php = sudah
+- finance_rejected.blade.php = sudah
+- note_revisi_sidang.blade.php = sudah
+- prodi_confirm.blade.php = sudah
+- prodi_penjadwalan.blade.php = sudah
+- prodi_re_penjadwalan.blade.php = sudah
+- prodi_reject.blade.php = sudah
+- prodi_submitted.blade.php = sudah
+- rejected.blade.php = sudah
+- reminder_sidang.blade.php = sudah
+- reschedule-notification.blade.php = sudah
+- sidang_result.blade.php = sudah
+- submitted.blade.php = sudah
+- undangan_sidang.blade.php = sudah
+<!-- TASK SCHEDULER -->
+<!-- berdasarkan tanggal revisi sidang dan penjadwalan yang telah selesai -->
+3. test notify prodi admin to re-schedule if needed
+- kp = belum
+- skripsi = sudah
+		(error)* saat penjadwalan ulang penguji_user_id have not default value = sudah
+		solved with:
+		ALTER TABLE old_penjadwalan_sidang_history
+		DROP FOREIGN KEY old_penjadwalan_sidang_history_penguji_user_id_foreign,
+		DROP FOREIGN KEY old_penjadwalan_sidang_history_ketua_penguji_user_id_foreign,
+		DROP INDEX old_penjadwalan_sidang_history_penguji_user_id_foreign,
+		DROP INDEX old_penjadwalan_sidang_history_ketua_penguji_user_id_foreign,
+		DROP COLUMN penguji_user_id, 
+		DROP COLUMN ketua_penguji_user_id, 
+		DROP COLUMN nilai_score, 
+		DROP COLUMN nilai_index, 
+		DROP COLUMN nilai_ip;
+		
+		(error)* error while updating column 0 value on foreign key column = sudah
+		solved with:
+		set null as default value not 0
+- tesis = belum
+4. test update no revisi on h2 scheduled
+- kp = belum
+- skripsi = belum
+- tesis = belum
+5. set penjadwalan jika sudah berlalu akan dinyatakan sebagai data lama
+- kp = belum
+- skripsi = belum
+- tesis = belum
+6. notify participant pas hari h sidang untuk berita acara
+- kp = belum
+- skripsi = belum
+- tesis = belum
+7. set expired jika participant belum submit berita acara
+- kp = belum
+- skripsi = belum
+- tesis = belum
+<!-- END TASK SCHEDULER -->
+
+8. try change 00:00 AM to 12:00 AM
+changes already done on UI DD-MM-YYYY HH:mm A into = DD-MM-YYYY hh:mm A
+file changed:
+- kp_schedule.blade.php
+- skripsi_schedule.blade.php
+- tesis_schedule.blade.php
